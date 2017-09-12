@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='js/js.js')}}"></script>
+</head>
+
+<body>
+	<div id="wrapper">
+	<table align="center">
+	<tr><th>Name</th><th>Email:</th></tr>
+	{% for i in data %}
+		<tr><td>{{ i['first_name'] }} {{ i['last_name']}}</td><td>{{ i['email'] }}</td></tr> 
+	{% endfor %}
+	</table>
+	 {% with messages = get_flashed_messages() %}
+	 {% for message in messages %}
+	 <p style="color: red">{{ message }}</p>
+	 {% endfor %}
+	 {% endwith%}
+
+	<form method="POST" action="/">
+	<p>Email: <input type="text" name="email" id="email" value="{{ email }}"></p>
+	<input type="submit" value="SUBMIT">
+	</form>
+	</div>
+</body>
+
+</html>
